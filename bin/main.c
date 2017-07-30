@@ -1,3 +1,16 @@
+/** @source __ApplicationName__
+**
+** __ShortDescription__
+**
+** @author Copyright (C) 16/4/2017 __Amr_Fawzy__
+** @version 1.0
+** @@
+********************************************************************/
+
+
+/* ==================================================================== */
+/* ========================== include files =========================== */
+/* ==================================================================== */
 #include <stdio.h>
 #include "Std_Types.h"
 #include "CRC.h"
@@ -6,55 +19,32 @@
 
 uint32 main(uint32 argc, uint8 *argv[])
 {
-	const uint8 *const filename = argv[1];
-	FILE *file = fopen(filename, "r+");
+	const uint8 *const Image = argv[1];
+	FILE *Ifile = fopen(Image, "r+");
 	uint8 buffer[MAX_LINE_LENGTH];
-	uint32 startAddress = 0x13800;
-	uint32 endAddress = 0x13813;
-	uint32 indx = MIN_UINT32;
-	uint8 pindx = MIN_UINT8;
-	uint32 CRC = 0xFFFFFFFFU;
+	blockboundies_Type blocksboundries[MAX_BLOCK_BOUNDRIES];
+	uint8 blockNumber = MIN_UINT8;
+	uint32 CRC = MIN_UINT32;
 	uint8 firstCall = TRUE;
 	uint32 temp_CRC = MIN_UINT32;
 	CRC_Init();
-	if (file == NULL)
+	(void)SPR_GetBlocksBoundries(Ifile, &blockNumber, buffer);
+	if (Ifile == NULL)
 	{
-	    printf("file not found !\n");
+	    printf("s19 file not found !\n");
 	    exit(1);
 	}
-
-	/*while(fgets(line, sizeof(line), file))
+	else
 	{
-		(void)spr_ReadRecord(line);
-	}*/
-	/*for (pindx = MIN_UINT8; pindx < 2; pindx++)
-	{
-		if (E_OK == SPR_RetrieveData(file, startAddress, endAddress, buffer))
-		{
-			printf("data = 0x");
-			for (indx = MIN_UINT32; (startAddress + indx) <= endAddress; indx++)
-			{
-				printf("%X ", buffer[indx]);
-			}
-			printf("\n");
-			CRC = crc32(CRC, buffer, (endAddress - startAddress +1));
-			firstCall = FALSE;
-			printf("CRC = %X \n", CRC);
-			temp_CRC = CRC;
-			FLIP_32(temp_CRC, CRC);
-			CRC = ~CRC;
-			startAddress = 0x13814;
-			endAddress = 0x13827;
-		}
-		else
-		{
-			printf("data is not here \n");
-		}
-	}*/
-	CRC = CRC_CalculateMemCRC32(file);
+		/*do nothing*/
+	}
+	CRC = CRC_CalculateMemCRC32(Ifile, buffer, blockNumber);
 	printf("CRC = %X \n", CRC);
-	(void)spr_Write_uint32ToFile(file, __CRC_START_ADDRESS, CRC);
-	fclose(file);
+	(void)spr_Write_uint32ToFile(Ifile, __CRC_START_ADDRESS, CRC);
+	printf("*************************************\n");
+	printf("******CRC UPDATED SUCCESSFULLY*******\n");
+	printf("*************************************\n");
+	fclose(Ifile);
 
     return 0;
 }

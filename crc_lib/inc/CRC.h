@@ -7,32 +7,33 @@
 #include "Crc_Cfg.h"                           
 
 #define __CCB_BLOCK_START_ADDRESS 		0x00018000
-#define __CCB_BLOCK_END_ADDRESS 		0x00018FFF
+#define __CCB_BLOCK_END_ADDRESS 		0x000180d2
 #define __EXCEPTION_TABLE_START 		0x00019000
-#define __EXCEPTION_TABLE_END 			0x000197FF
+#define __EXCEPTION_TABLE_END 			0x000190f4
 #define __INTC_TABLE_START 				0x0001a000
-#define __INTC_TABLE_END 				0x0001a7FF
+#define __INTC_TABLE_END 				0x0001a640
 #define __MTEXT_BLOCK_A_START_ADDRESS 	0x0001a800
-#define __MTEXT_BLOCK_A_END_ADDRESS 	0x00086FFF
-
+#define __MTEXT_BLOCK_A_END_ADDRESS 	0x0006a188
+#define __MTEXT_BLOCK_B_START_ADDRESS 	0x0006a188
+#define __MTEXT_BLOCK_B_END_ADDRESS 	0x0006b830
 
 #define __CRC_START_ADDRESS 			0x0001a800
 #define __CRC_END_ADDRESS				0x0001a803
-#define CRC_MAX_BLOCKS					(uint8)4
+#define CRC_MAX_BLOCKS					(uint8)6
 
 
 #define CRC_BUFFER_SIZE					512U
 
 #define u32THIRTYTWO_XOR                (0xFFFFFFFFUL)
-#define CRC_INITIAL_VALUE32 	       	(0xFFFFFFFFUL)
+#define  CRC_INITIAL_VALUE32        	(0xFFFFFFFFUL)
 #define u32MASK_32_REFLECT_DATA         (0x000000FFUL)
 #define u8BIT_IN_ROLE_COUNTER           (uint8)(0x80U)
 #define u32TOP_BIT_THIRTY_TWO           (0x80000000UL)
 #define u32MASK_32_TOP_BIT              (0x7FFFFFFFUL)
 #define u32THIRTYTWO_POLYNOMIAL         (0x04C11DB7UL)
-#define u8TABLE_32_MASK                 (uint8)(0x0FU)
-#define u8TABLE_32_SHIFT_FOUR           (0x04U)
-#define FT_START_CRC_VALUE          	(0xFFFFFFFFU)
+#define u8TABLE_32_MASK                  (uint8)(0x0FU)
+#define u8TABLE_32_SHIFT_FOUR            (0x04U)
+#define FT_START_CRC_VALUE          	0xFFFFFFFFU
 #define u32REFLECT_DATA_LSB             (0x00000001UL)
 #define u8THIRTYTHREE                   (uint8)33
 #define u8RES_REFLECT_LENGTH            (uint8)(0x20U)

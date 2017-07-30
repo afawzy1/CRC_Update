@@ -25,12 +25,13 @@
 
 
 MEM_BLOCKS CRC_MEMORY_SECTIONS [CRC_MAX_BLOCKS] = {
-															{ __CCB_BLOCK_START_ADDRESS,         __CCB_BLOCK_END_ADDRESS         },
-															{ __EXCEPTION_TABLE_START,           __EXCEPTION_TABLE_END           },
-															{ __INTC_TABLE_START,                __INTC_TABLE_END                },
-															{ __MTEXT_BLOCK_A_START_ADDRESS,     __MTEXT_BLOCK_A_END_ADDRESS	 }
-
+															 __CCB_BLOCK_START_ADDRESS,        
+															 __EXCEPTION_TABLE_START,          
+															 __INTC_TABLE_START,               
+															 __MTEXT_BLOCK_A_START_ADDRESS,    		
+															 __MTEXT_BLOCK_B_START_ADDRESS,    
 												  };
+blockboundies_Type crc_Add = { __CRC_START_ADDRESS, __CRC_END_ADDRESS };
 
 static const uint32 aku32Table[Crc_u8TABLE32_SIZE] =
 {
@@ -182,7 +183,7 @@ uint32 CRC_CalculateCRC32(/*uint32 crc_accum,*/ uint8 *Start_address, uint32 blo
 	}
 	return CRC_accum;
 }
- uint32 CRC_CalculateMemCRC32(FILE *file)
+uint32 CRC_CalculateMemCRC32(FILE *file, blockboundies_Type *buffer, uint8 blockLength)
  {
 	 uint8 indx = MIN_UINT8;
 	 uint8 pindx = MIN_UINT8;
@@ -191,22 +192,58 @@ uint32 CRC_CalculateCRC32(/*uint32 crc_accum,*/ uint8 *Start_address, uint32 blo
 	 uint32 blocksize = MIN_UINT32;
 	 uint32 endChunkAdd = MIN_UINT32;
 	 boolean firstCall = TRUE;
-	 for(indx = MIN_UINT8; indx < CRC_MAX_BLOCKS; indx++)
+	 for (indx = MIN_UINT8; indx < blockLength; indx++)
 	 {
-		 Add2Start = CRC_MEMORY_SECTIONS[indx].start_address;
-		 Add2Stop  = CRC_MEMORY_SECTIONS[indx].end_address;
+		 Add2Start = buffer[indx].startAdd;
+		 Add2Stop = buffer[indx].endAdd;
 		 printf("**************START READING BLOCK %d************** \n", indx);
-		 /*printf("Start Add = %X \n", Add2Start);
-		 printf("End Add = %X \n", Add2Stop);*/
+		 if (
+				Add2Start < __CRC_START_ADDRESS
+				&&
+				Add2Stop >= __CRC_END_ADDRESS
+			 )
+		 {
+			 printf("Not Implemented YET\n");
+			 exit(1);
+		 }
+		 else if (
+					Add2Start == __CRC_START_ADDRESS
+					&&
+					Add2Stop >= __CRC_END_ADDRESS
+			     )
+		 {
+			 Add2Start = __CRC_END_ADDRESS + 1;
+			 buffer[indx].startAdd = Add2Start;
+			 /*printf("Check point2 \n");*/
+		 }
+		 else
+		 {
+		 }
+		 printf("Start Add = %X \n", Add2Start);
+		 printf("End Add = %X \n", Add2Stop);
 		 while(Add2Start < Add2Stop)
 		{
 			 blocksize = ((Add2Stop - Add2Start + 1) >= CRC_BUFFER_SIZE) ? CRC_BUFFER_SIZE : (Add2Stop - Add2Start + 1);
-			 firstCall = (Add2Start == CRC_MEMORY_SECTIONS[MIN_UINT8].start_address) ? TRUE : FALSE;
+			 firstCall = (Add2Start == buffer[MIN_UINT8].startAdd) ? TRUE : FALSE;
 			 CRC_accum = (firstCall == TRUE) ?  0xFFFFFFFF : CRC_accum;
 
 			 if (E_OK == SPR_RetrieveData(file, Add2Start, (Add2Start + blocksize - 1) , CRC_Buffer))
 			 {
+				/*printf("CRC = %X\n", CRC_accum);
+				printf("data = 0x");
+				for(pindx = MIN_UINT32; pindx < blocksize; pindx++)
+				{
+					printf("%X ", CRC_Buffer[pindx]);
+				}
+				printf("\n");*/
+			 	/*CRC_accum = crc32(CRC_accum,CRC_Buffer, blocksize);*/
 				 CRC_accum = Crc_CalculateCRC32(CRC_Buffer, blocksize, CRC_accum, firstCall);
+				 /*if (indx == 4)
+				 {
+					 printf("Check point 1: %X \n", CRC_accum);
+					 printf("Length = %d\n", blocksize);
+				 }*/
+				 /*scanf("%s", CRC_Buffer);*/
 			 }
 			 else
 			 {

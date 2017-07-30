@@ -1,4 +1,4 @@
-/** @source __ApplicationName__
+﻿/** @source __ApplicationName__
 **
 ** __ShortDescription__
 **
@@ -23,9 +23,18 @@
 /* ============================ constants ============================= */
 /* ==================================================================== */
 
-/* #define and enum statements go here */
-
-
+const uint8 CCB_Start[]  = { " __CCB_BLOCK_START_ADDRESS \n" };
+const uint8 CCB_Stop []  = { " __CCB_BLOCK_END_ADDRESS \n" };
+const uint8 Exp_Start[]  = { " __EXCEPTION_TABLE_START \n" };
+const uint8 Exp_Stop []  = { "__EXCEPTION_TABLE_END \n" };
+const uint8 Int_Start[]  = { "__INTC_TABLE_START \n" };
+const uint8 Int_Stop[]   = { "__INTC_TABLE_END \n" };
+const uint8 BlkA_Start[] = { "__MTEXT_BLOCK_A_START_ADDRESS \n" };
+const uint8 BlkA_Stop[]  = { "__MTEXT_BLOCK_A_END_ADDRESS \n" };
+const uint8 BlkB_Start[] = { "__MTEXT_BLOCK_B_START_ADDRESS \n" };
+const uint8 BlkB_Stop[]  = { "__MTEXT_BLOCK_B_END_ADDRESS \n" };
+const uint8 CRC_Start[] =  {"__CRC_START_ADDRESS \n"};
+const uint8 CRC_Stop[] =   {"__CRC_END_ADDRESS \n"};
 
 /* ==================================================================== */
 /* ======================== global variables ========================== */
@@ -52,13 +61,147 @@ static uint8 spr_MapAddLength(uint8 length);
 static uint8 spr_GetAddLnth(uint8 length);
 static std_RetVal spr_GetAddData(FILE *file, uint32 saddress, uint8 *data);
 static void spr_uint32Tohexstr(uint32 num, uint8 *buffer);
+static void spr_ConcBlocks(blockboundies_Type *buffer, uint8 blocknumber, uint8 *concBlocks);
+static std_RetVal spr_updateRecordCkSum(uint8 *record);
+static void spr_uint8Tohexstr(uint32 num, uint8 *buffer);
+static uint8 spr_GetRecordByteLgth(const uint8 *record);
+
 
 
 
 /* ==================================================================== */
 /* ============================ functions ============================= */
 /* ==================================================================== */
+std_RetVal SPR_GetBlocksBoundries(FILE *file, uint8 *BlocksNumber, blockboundies_Type *buffer)
+{
+	static uint8 record[MAX_LINE_LENGTH];
+	static uint8 firstCall = TRUE;
+	static uint8 AddfoundLater = FALSE;
+	static uint32 lastRecordAdd = MIN_UINT32;
+	static uint8 lastRecordDataLngh = MIN_UINT8;
+	std_RetVal retval = E_NOT_OK;
+	uint8 rdatalength = MIN_UINT8;
+	uint32 raddress = MIN_UINT8;
+	uint8 stdata[CORE_DATA_LNTH];
+	uint8 dataoffset = MIN_UINT8;
+	uint8 addIndex = MIN_UINT8;
+	uint8 indx = MIN_UINT8;
+	uint8 concBlocks = MIN_UINT8;
+	if (file != NULL_PTR && BlocksNumber != NULL_PTR)
+	{
+		if (firstCall == TRUE)
+		{
+			do
+			{
+				if (!fgets(record, sizeof(record), file))
+				{
+					printf("S19 file format error \n");
+					exit(1);
+				}
+				else
+				{
+					raddress = spr_GetRecordAddress(record);
+					rdatalength = spr_GetRecordDataLength(record);
+				}
+			} while (raddress == MIN_UINT32);
+			buffer[addIndex].startAdd = raddress;
+			/*printf("startadd = %X\n", buffer[addIndex].startAdd);*/
+		}
+		else
+		{
+			/*do nothing*/
+		}
+		do
+		{
+			if (firstCall == FALSE)
+			{
+				rdatalength = spr_GetRecordDataLength(record);
+				raddress = spr_GetRecordAddress(record);
+			}
+			firstCall = FALSE;
+			/*printf("Record = %s \n", record);*/
+			/*printf("rdatalength = %X,raddress = %X & last_address = %X\n ", rdatalength, raddress, lastRecordAdd);*/
+			if (
+					lastRecordAdd != MIN_UINT32
+					&&
+					(lastRecordDataLngh + lastRecordAdd) != raddress
+				)
+			{
+				buffer[addIndex].endAdd = (lastRecordDataLngh + lastRecordAdd - 1);
+				/*printf("endAdd = %X\n", buffer[addIndex].endAdd);*/
+				if (raddress == MIN_UINT32)
+				{
+					/*ignore that address*/
+				}
+				else
+				{
+					addIndex++;
+					buffer[addIndex].startAdd = raddress;
+					/*printf("startadd = %X\n", buffer[addIndex].startAdd);*/
+				}
+				
+			}
+			else
+			{
+				/*the address in not in this record*/
+			}
+			lastRecordAdd = raddress;
+			lastRecordDataLngh = rdatalength;
+		} while (fgets(record, sizeof(record), file));
+		addIndex++;
+		printf("******************************************************\n");
+		spr_ConcBlocks(buffer, addIndex , &concBlocks);
+		/*printf("blocks number = %d\n", addIndex);
+		printf("Conc = %d\n", concBlocks);*/
+		BlocksNumber[0] = (addIndex - concBlocks);
+		/*for (indx = MIN_UINT8; indx < BlocksNumber[0]; indx++)
+		{
+			printf("startadd = %X\n", buffer[indx].startAdd);
+			printf("endAdd = %X\n", buffer[indx].endAdd);
+		}*/
 
+	}
+	rewind(file);
+	return retval;
+}
+
+static void spr_ConcBlocks(blockboundies_Type *buffer, uint8 blocknumber, uint8 *concBlocks)
+{
+	uint8 indx1 = MIN_UINT8;
+	uint8 indx2 = MIN_UINT8;
+	concBlocks[0] = MIN_UINT8;
+	/*printf("blocks number = %d\n", blocknumber);*/
+	for (indx1 = MIN_UINT8; indx1 < blocknumber; indx1++)
+	{
+		for (indx2 = MIN_UINT8; indx2 < blocknumber; indx2++)
+		{
+			if ((buffer[indx1].endAdd + 1) == buffer[indx2].startAdd)
+			{
+				/*printf("indx1 = %d, indx2 = %d\n", indx1, indx2);*/
+				buffer[indx1].endAdd = buffer[indx2].endAdd;
+				concBlocks[0] +=1;
+				/*printf("Conc = %d\n", concBlocks[0]);*/
+			}
+			else
+			{
+			}
+		}
+	}
+	blocknumber -= concBlocks[0];
+	for (indx1 = MIN_UINT8; indx1 < blocknumber; indx1++)
+	{
+		if (buffer[indx1].startAdd > RAM_START_ADDRESS)
+		{
+			concBlocks[0] += 1;
+			for (indx2 = indx1 + 1; indx2 < blocknumber; indx2++)
+			{
+				buffer[indx2 - 1].startAdd = buffer[indx2].startAdd;
+				buffer[indx2 - 1].endAdd = buffer[indx2].endAdd;
+			}
+		}
+	}
+
+}
 
 std_RetVal SPR_RetrieveData(FILE *file, uint32 startAddress, uint32 endAddress, uint8 *buffer)
 {
@@ -85,7 +228,7 @@ std_RetVal SPR_RetrieveData(FILE *file, uint32 startAddress, uint32 endAddress, 
 			else
 			{
 				printf("Failure to retrieve data \n");
-				/*printf("startAdd = 0x%X and endAdd = 0x%X \n", startAddress, endAddress);*/
+				exit(1);
 				break;
 			}
 		}
@@ -108,6 +251,43 @@ static void spr_uint32Tohexstr(uint32 num, uint8 *buffer)
 		buffer[(EIGHT_STEPS - 1 - indx)] = hexlookup[((num >> (indx * 4))&(FOUR_BIT_MSK))];
 	}
 	buffer[EIGHT_STEPS] = '\0';
+}
+
+static void spr_uint8Tohexstr(uint32 num, uint8 *buffer)
+{
+	char hexlookup[] = { '0', '1', '2', '3', '4', '5', '6', '7',
+		'8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+	uint8 indx = MIN_UINT8;
+	for (indx = MIN_UINT8; indx < TWO_STEPS; indx++)
+	{
+		buffer[(TWO_STEPS - 1 - indx)] = hexlookup[((num >> (indx * 4))&(FOUR_BIT_MSK))];
+	}
+	buffer[TWO_STEPS] = '\0';
+}
+
+static std_RetVal spr_updateRecordCkSum(uint8 *record)
+{
+	uint32 sum = MIN_UINT32;
+	uint8 rdatalength = MIN_UINT8;
+	uint32 raddress = MIN_UINT8;
+	uint8 indx = MIN_UINT8;
+	uint8 dataoffset = MIN_UINT8;
+	uint8 stdata[CORE_DATA_LNTH];
+	uint8 checksum = MIN_UINT8;
+	uint8 CKS[CORE_DATA_LNTH + 1];
+	rdatalength = spr_GetRecordByteLgth(record);
+	/*printf("record bytes = %d\n", rdatalength);*/
+	for (indx = MIN_UINT8; indx < (rdatalength * 2); indx+=2)
+	{
+		dataoffset = REC_HEADER_OFFEST + indx;
+		memcpy(stdata, (record + dataoffset), sizeof(stdata));
+		sum += strtoul(stdata, NULL, 16);
+		/*printf("sum = %X ,byte = %s\n", sum, stdata);*/
+	}
+	checksum = ~((uint8)sum);
+	/*printf("sum = %X\n", checksum);*/
+	spr_uint8Tohexstr(checksum, CKS);
+	memcpy((record + REC_HEADER_OFFEST + indx), CKS, sizeof(CKS));
 }
 
 std_RetVal spr_Write_uint32ToFile(FILE *file, uint32 saddress, uint32 data)
@@ -149,10 +329,12 @@ std_RetVal spr_Write_uint32ToFile(FILE *file, uint32 saddress, uint32 data)
 				/*printf("record location = %d\n", data_location);*/
 				fseek(file, data_location,SEEK_SET);
 				dataoffset = REC_ADD_OFFSET + spr_MapAddLength(record[1]) + ((saddress - raddress) * 2);
+				/*printf("record = %s\n", record);*/
 				memcpy((record + dataoffset), CRC, CRC_HEXSTR_LNTH);
 				/*printf("record = %s\n", record);*/
+				(void)spr_updateRecordCkSum(record);
+				/*printf("record = %s\n", record);*/
 				fprintf(file, "%s", record);
-				/*rewind(file);*/
 				retval = E_OK;
 				break;
 
@@ -279,6 +461,15 @@ static uint8 spr_GetRecordDataLength(const uint8 *record)
 	memcpy(stdatalength, (record + 2), sizeof(stdatalength));
 	datalength = (uint8)strtoul(stdatalength, NULL, 16);
 	return datalength - 1 - spr_GetAddLnth(record[1]);
+}
+
+static uint8 spr_GetRecordByteLgth(const uint8 *record)
+{
+	uint8 stdatalength[] = { MIN_UINT8, MIN_UINT8 };
+	uint8 datalength = MIN_UINT8;
+	memcpy(stdatalength, (record + 2), sizeof(stdatalength));
+	datalength = (uint8)strtoul(stdatalength, NULL, 16);
+	return datalength;
 }
 
 static std_RetVal spr_CheckValidRecord(const uint8 *line)
