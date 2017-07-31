@@ -28,7 +28,7 @@ uint32 main(uint32 argc, uint8 *argv[])
 	uint8 firstCall = TRUE;
 	uint32 temp_CRC = MIN_UINT32;
 	CRC_Init();
-	(void)SPR_GetBlocksBoundries(Ifile, &blockNumber, buffer);
+	(void)SPR_GetBlocksBoundries(Ifile, &blockNumber, blocksboundries);
 	if (Ifile == NULL)
 	{
 	    printf("s19 file not found !\n");
@@ -38,7 +38,7 @@ uint32 main(uint32 argc, uint8 *argv[])
 	{
 		/*do nothing*/
 	}
-	CRC = CRC_CalculateMemCRC32(Ifile, buffer, blockNumber);
+	CRC = CRC_CalculateMemCRC32(Ifile, blocksboundries, blockNumber);
 	printf("CRC = %X \n", CRC);
 	(void)spr_Write_uint32ToFile(Ifile, __CRC_START_ADDRESS, CRC);
 	printf("*************************************\n");

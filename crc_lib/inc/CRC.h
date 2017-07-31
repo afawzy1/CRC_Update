@@ -53,7 +53,7 @@ extern MEM_BLOCKS CRC_MEMORY_SECTIONS [CRC_MAX_BLOCKS];
 
 extern void CRC_Init(void);
 extern uint32 CRC_CalculateCRC32(/*uint32 crc_accum,*/ uint8 *Start_address, uint32 block_szie);
-extern uint32 CRC_CalculateMemCRC32(FILE *file);
+extern uint32 CRC_CalculateMemCRC32(FILE *file, blockboundies_Type *buffer, uint8 blockLength);
 extern uint32 Crc_CalculateCRC32(
 
       /* !Comment :  Pointer to start address of data block to be  calculated. */

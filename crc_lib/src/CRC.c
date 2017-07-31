@@ -229,21 +229,20 @@ uint32 CRC_CalculateMemCRC32(FILE *file, blockboundies_Type *buffer, uint8 block
 
 			 if (E_OK == SPR_RetrieveData(file, Add2Start, (Add2Start + blocksize - 1) , CRC_Buffer))
 			 {
-				/*printf("CRC = %X\n", CRC_accum);
-				printf("data = 0x");
+				/*printf("CRC = %X\n", CRC_accum);*/
+				/*printf("data = 0x");
 				for(pindx = MIN_UINT32; pindx < blocksize; pindx++)
 				{
 					printf("%X ", CRC_Buffer[pindx]);
 				}
 				printf("\n");*/
 			 	/*CRC_accum = crc32(CRC_accum,CRC_Buffer, blocksize);*/
+				 /*scanf("%S",CRC_Buffer);*/
 				 CRC_accum = Crc_CalculateCRC32(CRC_Buffer, blocksize, CRC_accum, firstCall);
-				 /*if (indx == 4)
-				 {
-					 printf("Check point 1: %X \n", CRC_accum);
-					 printf("Length = %d\n", blocksize);
-				 }*/
-				 /*scanf("%s", CRC_Buffer);*/
+
+				 /*printf("Check point 1: %X \n", CRC_accum);
+				 printf("Length = %d\n", blocksize);*/
+				 /*scanf("%S",CRC_Buffer);*/
 			 }
 			 else
 			 {
@@ -326,7 +325,7 @@ uint32 CRC_CalculateMemCRC32(FILE *file, blockboundies_Type *buffer, uint8 block
 
      uint32 u32Index = MIN_UINT32;
      uint32 TEMP = MIN_UINT32;
-	 /*printf("Check point 2: %X \n", Crc_StartValue32);*/
+	 /*printf("Check point 1: %X \n", Crc_StartValue32);*/
  #if (CRC_32_MODE == CRC_32_RUNTIME)
 	 printf("I am HERE\n");
      uint32 u32Bit = MIN_UINT32;
@@ -410,7 +409,7 @@ uint32 CRC_CalculateMemCRC32(FILE *file, blockboundies_Type *buffer, uint8 block
    {
      /* undo the XOR on the start value */
      Crc_StartValue32 ^= u32THIRTYTWO_XOR;
-	 /*printf("Check point 3: %X \n", Crc_StartValue32);*/
+	 /*printf("Check point 2: %X \n", Crc_StartValue32);*/
 
      /* The reflection of the initial value is not necessary here as we used
       * the "reflected" algorithm and reflected table values. */
@@ -427,21 +426,22 @@ uint32 CRC_CalculateMemCRC32(FILE *file, blockboundies_Type *buffer, uint8 block
      if (Crc_DataPtr != NULL_PTR )
  	 {
     Crc_StartValue32
-      = aku32Table[u8TABLE_32_MASK & (Crc_StartValue32 ^ *Crc_DataPtr)]
+      = aku32Table[(u8TABLE_32_MASK) & (Crc_StartValue32 ^ *Crc_DataPtr)]
       ^ (Crc_StartValue32 >> u8TABLE_32_SHIFT_FOUR);
-	/*printf("Chck point 2: %X \n", Crc_StartValue32);*/
+	/*printf("Chck point 3: %X \n", Crc_StartValue32);
+	if(Crc_StartValue32 == 0xF7E79BB6) printf("HERE : %X \n", *Crc_DataPtr);*/
 
     /* Process Least Significant Four bits of the data byte */
     Crc_StartValue32
       = aku32Table[
-        u8TABLE_32_MASK & (Crc_StartValue32 ^ ((uint32)(*Crc_DataPtr >> u8TABLE_32_SHIFT_FOUR)))]
+        (u8TABLE_32_MASK) & ((Crc_StartValue32) ^ ((uint32)(*Crc_DataPtr >> u8TABLE_32_SHIFT_FOUR)))]
       ^ (Crc_StartValue32 >> u8TABLE_32_SHIFT_FOUR);
-		/*printf("Chck point 3: %X \n", Crc_StartValue32);*/
+		/*printf("Chck point 4: %X \n", Crc_StartValue32);*/
       }
  	else
  	{
  	/* Do  Nothing */
- 	 }
+ 	}
 
 
  #elif (Crc_u8TABLE32_SIZE == 256U) /* CRC32 generation via large lookup table */

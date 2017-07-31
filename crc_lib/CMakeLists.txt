@@ -12,7 +12,7 @@ add_library(sub::crc_lib ALIAS ${PROJECT_NAME})
 
 include_directories( ${PROJECT_NAME}
     PUBLIC 
-	${Std_lib_SOURCE_DIR}/inc
 	${SParser_lib_SOURCE_DIR}/inc
 	${PROJECT_SOURCE_DIR}/inc
+	${Std_lib_SOURCE_DIR}/inc
 )

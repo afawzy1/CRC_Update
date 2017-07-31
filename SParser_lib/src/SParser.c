@@ -60,6 +60,7 @@ static uint32 spr_GetRecordAddress(const uint8 *line);
 static uint8 spr_MapAddLength(uint8 length);
 static uint8 spr_GetAddLnth(uint8 length);
 static std_RetVal spr_GetAddData(FILE *file, uint32 saddress, uint8 *data);
+static std_RetVal hex2uint8(uint8 *hex, uint8 *data);
 static void spr_uint32Tohexstr(uint32 num, uint8 *buffer);
 static void spr_ConcBlocks(blockboundies_Type *buffer, uint8 blocknumber, uint8 *concBlocks);
 static std_RetVal spr_updateRecordCkSum(uint8 *record);
@@ -223,7 +224,9 @@ std_RetVal SPR_RetrieveData(FILE *file, uint32 startAddress, uint32 endAddress, 
 				{
 					/*still there is data to be retreived*/
 				}
-				indx ++;
+				indx++;
+				/*printf("Add: %X, Data: %X \n",startAddress + indx,  buffer[indx]);*/
+				/*if(indx == 60) scanf("%s",indx);*/
 			}
 			else
 			{
@@ -379,13 +382,26 @@ static std_RetVal spr_GetAddData(FILE *file, uint32 saddress, uint8 *data)
 			if (saddress >= raddress && saddress < (raddress +  rdatalength))
 			{
 				/*printf("CHECK POINT \n");*/
-				dataoffset = REC_ADD_OFFSET + spr_MapAddLength(record[1]) + (saddress - raddress)*2;
+				dataoffset = REC_ADD_OFFSET + (spr_MapAddLength(record[1])) + ((saddress - raddress)*2);
 				memcpy(stdata, (record + dataoffset), sizeof(stdata));
-				data[0] = strtoul(stdata, NULL, 16);
-				/*rewind(file);*/
-				retval = E_OK;
-				break;
+				/*data[0] = strtoul(stdata, NULL, 16);*/
+				if(E_OK != hex2uint8(stdata, data))
+				{
+					printf("General programming error CODE:04 \n");
+					exit(1);
+				}
+				else
+				{
+					/*if(saddress == 0x18022)
+					{
+						printf("0x18022:%s \n", stdata);
+						printf("0x18022:%X \n", data[0]);
 
+					}*/
+					/*rewind(file);*/
+					retval = E_OK;
+					break;
+				}
 			}
 			else
 			{
@@ -395,9 +411,33 @@ static std_RetVal spr_GetAddData(FILE *file, uint32 saddress, uint8 *data)
 	}
 	else
 	{
-		printf("General prgramming error \n");
+		printf("General programming error CODE:05 \n");
+		exit(1);
 	}
 	return retval;
+}
+
+static std_RetVal hex2uint8(uint8 *hex, uint8 *data) {
+	std_RetVal retval = E_OK;
+	uint8 indx = MIN_UINT8;
+	uint8 byte = MIN_UINT8;
+    for(indx = MIN_UINT8; indx < TWO_STEPS; indx++)
+    {
+        // get current character then increment
+        byte = hex[indx];
+        // transform hex character to the 4bit equivalent number, using the ascii table indexes
+        if (byte >= '0' && byte <= '9') byte = byte - '0';
+        else if (byte >= 'a' && byte <='f') byte = byte - 'a' + 10;
+        else if (byte >= 'A' && byte <='F') byte = byte - 'A' + 10;
+        else
+        {
+        	retval = E_NOT_OK;
+        	break;
+        }
+        // shift 4 to make space for new digit, and add the 4 bits of the new digit
+        data[0] = (data[0] << 4) | (byte & 0xF);
+    }
+    return retval;
 }
 
 static uint8 spr_MapAddLength(uint8 length)
