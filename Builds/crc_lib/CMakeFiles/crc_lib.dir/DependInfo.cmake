@@ -16,8 +16,9 @@ set(CMAKE_TARGET_LINKED_INFO_FILES
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../crc_lib/crc_lib"
   "../crc_lib/PUBLIC"
-  "/inc"
+  "../SParser_lib/inc"
   "../crc_lib/inc"
+  "../Std_lib/inc"
   )
 set(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
 set(CMAKE_Fortran_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})
