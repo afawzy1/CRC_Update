@@ -1,0 +1,2 @@
+C:\minGW\bin\ar.exe cq libcrc_lib.a  CMakeFiles/crc_lib.dir/src/CRC.c.obj
+C:\minGW\bin\ranlib.exe libcrc_lib.a
