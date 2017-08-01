@@ -1,1 +1,1 @@
--IC:/DVSArchitecture/test/trunk/bin/bin -IC:/DVSArchitecture/test/trunk/bin/PUBLIC -IC:/DVSArchitecture/test/trunk/Std_lib/inc -IC:/DVSArchitecture/test/trunk/crc_lib/inc -IC:/DVSArchitecture/test/trunk/SParser_lib/inc 
+-I../../bin/bin -I../../bin/PUBLIC -I../../Std_lib/inc -I../../crc_lib/inc -I../../SParser_lib/inc 

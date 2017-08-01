@@ -41,10 +41,10 @@ RM = "C:\Program Files (x86)\CMake\bin\cmake.exe" -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\DVSArchitecture\test\trunk
+CMAKE_SOURCE_DIR = ${CMAKE_CURRENT_SOURCE_DIR}
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\DVSArchitecture\test\trunk\Builds
+CMAKE_BINARY_DIR = ${CMAKE_CURRENT_SOURCE_DIR}/../
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -71,9 +71,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles C:\DVSArchitecture\test\trunk\Builds\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles 0
 .PHONY : all
 
 # The main clean target

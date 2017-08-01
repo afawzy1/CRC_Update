@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/DVSArchitecture/test/trunk/bin/main.c" "C:/DVSArchitecture/test/trunk/Builds/bin/CMakeFiles/bin.dir/main.c.obj"
+  "C:/DVSArchitecture/CRC_Project/trunk/bin/main.c" "C:/DVSArchitecture/CRC_Project/trunk/Builds/bin/CMakeFiles/bin.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "C:/DVSArchitecture/test/trunk/Builds/crc_lib/CMakeFiles/crc_lib.dir/DependInfo.cmake"
-  "C:/DVSArchitecture/test/trunk/Builds/SParser_lib/CMakeFiles/SParser_lib.dir/DependInfo.cmake"
+  "C:/DVSArchitecture/CRC_Project/trunk/Builds/crc_lib/CMakeFiles/crc_lib.dir/DependInfo.cmake"
+  "C:/DVSArchitecture/CRC_Project/trunk/Builds/SParser_lib/CMakeFiles/SParser_lib.dir/DependInfo.cmake"
   )
 
 # The include file search paths:

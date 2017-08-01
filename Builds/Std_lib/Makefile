@@ -41,10 +41,10 @@ RM = "C:\Program Files (x86)\CMake\bin\cmake.exe" -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\DVSArchitecture\test\trunk
+CMAKE_SOURCE_DIR = C:\DVSArchitecture\CRC_Project\trunk
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\DVSArchitecture\test\trunk\Builds
+CMAKE_BINARY_DIR = C:\DVSArchitecture\CRC_Project\trunk\Builds
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -71,14 +71,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /d C:\DVSArchitecture\test\trunk\Builds && $(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles C:\DVSArchitecture\test\trunk\Builds\Std_lib\CMakeFiles\progress.marks
-	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 Std_lib/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles 0
+	cd /d .. && $(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles C:\DVSArchitecture\CRC_Project\trunk\Builds\Std_lib\CMakeFiles\progress.marks
+	cd /d .. && $(MAKE) -f CMakeFiles\Makefile2 Std_lib/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 Std_lib/clean
+	cd /d .. && $(MAKE) -f CMakeFiles\Makefile2 Std_lib/clean
 .PHONY : clean
 
 # The main clean target
@@ -87,17 +87,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 Std_lib/preinstall
+	cd /d .. && $(MAKE) -f CMakeFiles\Makefile2 Std_lib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 Std_lib/preinstall
+	cd /d .. && $(MAKE) -f CMakeFiles\Makefile2 Std_lib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /d C:\DVSArchitecture\test\trunk\Builds && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d .. && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -119,6 +119,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /d C:\DVSArchitecture\test\trunk\Builds && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d .. && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
