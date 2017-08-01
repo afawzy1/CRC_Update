@@ -41,10 +41,10 @@ RM = "C:\Program Files (x86)\CMake\bin\cmake.exe" -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\DVSArchitecture\CRC_Project\trunk
+CMAKE_SOURCE_DIR = C:\DVSArchitecture\test\trunk
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\DVSArchitecture\CRC_Project\trunk\Builds
+CMAKE_BINARY_DIR = C:\DVSArchitecture\test\trunk\Builds
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -71,14 +71,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles C:\DVSArchitecture\CRC_Project\trunk\Builds\SParser_lib\CMakeFiles\progress.marks
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 SParser_lib/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles 0
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles C:\DVSArchitecture\test\trunk\Builds\SParser_lib\CMakeFiles\progress.marks
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 SParser_lib/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 SParser_lib/clean
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 SParser_lib/clean
 .PHONY : clean
 
 # The main clean target
@@ -87,22 +87,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 SParser_lib/preinstall
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 SParser_lib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 SParser_lib/preinstall
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 SParser_lib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 SParser_lib/CMakeFiles/SParser_lib.dir/rule:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 SParser_lib/CMakeFiles/SParser_lib.dir/rule
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 SParser_lib/CMakeFiles/SParser_lib.dir/rule
 .PHONY : SParser_lib/CMakeFiles/SParser_lib.dir/rule
 
 # Convenience name for target.
@@ -111,7 +111,7 @@ SParser_lib: SParser_lib/CMakeFiles/SParser_lib.dir/rule
 
 # fast build rule for target.
 SParser_lib/fast:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f SParser_lib\CMakeFiles\SParser_lib.dir\build.make SParser_lib/CMakeFiles/SParser_lib.dir/build
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f SParser_lib\CMakeFiles\SParser_lib.dir\build.make SParser_lib/CMakeFiles/SParser_lib.dir/build
 .PHONY : SParser_lib/fast
 
 src/SParser.obj: src/SParser.c.obj
@@ -119,7 +119,7 @@ src/SParser.obj: src/SParser.c.obj
 
 # target to build an object file
 src/SParser.c.obj:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f SParser_lib\CMakeFiles\SParser_lib.dir\build.make SParser_lib/CMakeFiles/SParser_lib.dir/src/SParser.c.obj
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f SParser_lib\CMakeFiles\SParser_lib.dir\build.make SParser_lib/CMakeFiles/SParser_lib.dir/src/SParser.c.obj
 .PHONY : src/SParser.c.obj
 
 src/SParser.i: src/SParser.c.i
@@ -127,7 +127,7 @@ src/SParser.i: src/SParser.c.i
 
 # target to preprocess a source file
 src/SParser.c.i:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f SParser_lib\CMakeFiles\SParser_lib.dir\build.make SParser_lib/CMakeFiles/SParser_lib.dir/src/SParser.c.i
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f SParser_lib\CMakeFiles\SParser_lib.dir\build.make SParser_lib/CMakeFiles/SParser_lib.dir/src/SParser.c.i
 .PHONY : src/SParser.c.i
 
 src/SParser.s: src/SParser.c.s
@@ -135,7 +135,7 @@ src/SParser.s: src/SParser.c.s
 
 # target to generate assembly for a file
 src/SParser.c.s:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f SParser_lib\CMakeFiles\SParser_lib.dir\build.make SParser_lib/CMakeFiles/SParser_lib.dir/src/SParser.c.s
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f SParser_lib\CMakeFiles\SParser_lib.dir\build.make SParser_lib/CMakeFiles/SParser_lib.dir/src/SParser.c.s
 .PHONY : src/SParser.c.s
 
 # Help Target
@@ -161,6 +161,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -16,9 +16,9 @@ Std_Types.h
 string.h
 -
 
-C:/DVSArchitecture/CRC_Project/trunk/SParser_lib/src/SParser.c
+C:/DVSArchitecture/test/trunk/SParser_lib/src/SParser.c
 SParser.h
-C:/DVSArchitecture/CRC_Project/trunk/SParser_lib/src/SParser.h
+C:/DVSArchitecture/test/trunk/SParser_lib/src/SParser.h
 stdlib.h
 -
 stdio.h

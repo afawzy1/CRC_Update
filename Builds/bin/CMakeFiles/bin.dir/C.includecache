@@ -32,13 +32,13 @@ Crc_Cfg.h
 Std_Types.h
 ../crc_lib/inc/Std_Types.h
 
-C:/DVSArchitecture/CRC_Project/trunk/bin/main.c
+C:/DVSArchitecture/test/trunk/bin/main.c
 stdio.h
 -
 Std_Types.h
-C:/DVSArchitecture/CRC_Project/trunk/bin/Std_Types.h
+C:/DVSArchitecture/test/trunk/bin/Std_Types.h
 CRC.h
-C:/DVSArchitecture/CRC_Project/trunk/bin/CRC.h
+C:/DVSArchitecture/test/trunk/bin/CRC.h
 SParser.h
-C:/DVSArchitecture/CRC_Project/trunk/bin/SParser.h
+C:/DVSArchitecture/test/trunk/bin/SParser.h
 

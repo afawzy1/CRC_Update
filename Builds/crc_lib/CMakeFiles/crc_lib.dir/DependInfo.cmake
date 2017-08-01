@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/DVSArchitecture/CRC_Project/trunk/crc_lib/src/CRC.c" "C:/DVSArchitecture/CRC_Project/trunk/Builds/crc_lib/CMakeFiles/crc_lib.dir/src/CRC.c.obj"
+  "C:/DVSArchitecture/test/trunk/crc_lib/src/CRC.c" "C:/DVSArchitecture/test/trunk/Builds/crc_lib/CMakeFiles/crc_lib.dir/src/CRC.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

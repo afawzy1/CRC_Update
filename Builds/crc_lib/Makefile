@@ -41,10 +41,10 @@ RM = "C:\Program Files (x86)\CMake\bin\cmake.exe" -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\DVSArchitecture\CRC_Project\trunk
+CMAKE_SOURCE_DIR = C:\DVSArchitecture\test\trunk
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\DVSArchitecture\CRC_Project\trunk\Builds
+CMAKE_BINARY_DIR = C:\DVSArchitecture\test\trunk\Builds
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -71,14 +71,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles C:\DVSArchitecture\CRC_Project\trunk\Builds\crc_lib\CMakeFiles\progress.marks
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 crc_lib/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles 0
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles C:\DVSArchitecture\test\trunk\Builds\crc_lib\CMakeFiles\progress.marks
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 crc_lib/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 crc_lib/clean
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 crc_lib/clean
 .PHONY : clean
 
 # The main clean target
@@ -87,22 +87,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 crc_lib/preinstall
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 crc_lib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 crc_lib/preinstall
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 crc_lib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 crc_lib/CMakeFiles/crc_lib.dir/rule:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 crc_lib/CMakeFiles/crc_lib.dir/rule
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f CMakeFiles\Makefile2 crc_lib/CMakeFiles/crc_lib.dir/rule
 .PHONY : crc_lib/CMakeFiles/crc_lib.dir/rule
 
 # Convenience name for target.
@@ -111,7 +111,7 @@ crc_lib: crc_lib/CMakeFiles/crc_lib.dir/rule
 
 # fast build rule for target.
 crc_lib/fast:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f crc_lib\CMakeFiles\crc_lib.dir\build.make crc_lib/CMakeFiles/crc_lib.dir/build
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f crc_lib\CMakeFiles\crc_lib.dir\build.make crc_lib/CMakeFiles/crc_lib.dir/build
 .PHONY : crc_lib/fast
 
 src/CRC.obj: src/CRC.c.obj
@@ -119,7 +119,7 @@ src/CRC.obj: src/CRC.c.obj
 
 # target to build an object file
 src/CRC.c.obj:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f crc_lib\CMakeFiles\crc_lib.dir\build.make crc_lib/CMakeFiles/crc_lib.dir/src/CRC.c.obj
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f crc_lib\CMakeFiles\crc_lib.dir\build.make crc_lib/CMakeFiles/crc_lib.dir/src/CRC.c.obj
 .PHONY : src/CRC.c.obj
 
 src/CRC.i: src/CRC.c.i
@@ -127,7 +127,7 @@ src/CRC.i: src/CRC.c.i
 
 # target to preprocess a source file
 src/CRC.c.i:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f crc_lib\CMakeFiles\crc_lib.dir\build.make crc_lib/CMakeFiles/crc_lib.dir/src/CRC.c.i
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f crc_lib\CMakeFiles\crc_lib.dir\build.make crc_lib/CMakeFiles/crc_lib.dir/src/CRC.c.i
 .PHONY : src/CRC.c.i
 
 src/CRC.s: src/CRC.c.s
@@ -135,7 +135,7 @@ src/CRC.s: src/CRC.c.s
 
 # target to generate assembly for a file
 src/CRC.c.s:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(MAKE) -f crc_lib\CMakeFiles\crc_lib.dir\build.make crc_lib/CMakeFiles/crc_lib.dir/src/CRC.c.s
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(MAKE) -f crc_lib\CMakeFiles\crc_lib.dir\build.make crc_lib/CMakeFiles/crc_lib.dir/src/CRC.c.s
 .PHONY : src/CRC.c.s
 
 # Help Target
@@ -161,6 +161,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /d C:\DVSArchitecture\CRC_Project\trunk\Builds && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d C:\DVSArchitecture\test\trunk\Builds && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

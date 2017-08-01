@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/DVSArchitecture/CRC_Project/trunk/SParser_lib/src/SParser.c" "C:/DVSArchitecture/CRC_Project/trunk/Builds/SParser_lib/CMakeFiles/SParser_lib.dir/src/SParser.c.obj"
+  "C:/DVSArchitecture/test/trunk/SParser_lib/src/SParser.c" "C:/DVSArchitecture/test/trunk/Builds/SParser_lib/CMakeFiles/SParser_lib.dir/src/SParser.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

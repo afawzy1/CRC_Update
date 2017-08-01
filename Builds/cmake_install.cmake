@@ -1,4 +1,4 @@
-# Install script for directory: C:/DVSArchitecture/CRC_Project/trunk
+# Install script for directory: C:/DVSArchitecture/test/trunk
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,10 +29,10 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/DVSArchitecture/CRC_Project/trunk/Builds/bin/cmake_install.cmake")
-  include("C:/DVSArchitecture/CRC_Project/trunk/Builds/crc_lib/cmake_install.cmake")
-  include("C:/DVSArchitecture/CRC_Project/trunk/Builds/Std_lib/cmake_install.cmake")
-  include("C:/DVSArchitecture/CRC_Project/trunk/Builds/SParser_lib/cmake_install.cmake")
+  include("C:/DVSArchitecture/test/trunk/Builds/bin/cmake_install.cmake")
+  include("C:/DVSArchitecture/test/trunk/Builds/crc_lib/cmake_install.cmake")
+  include("C:/DVSArchitecture/test/trunk/Builds/Std_lib/cmake_install.cmake")
+  include("C:/DVSArchitecture/test/trunk/Builds/SParser_lib/cmake_install.cmake")
 
 endif()
 
@@ -42,7 +42,7 @@ else()
   set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 endif()
 
-file(WRITE "C:/DVSArchitecture/CRC_Project/trunk/Builds/${CMAKE_INSTALL_MANIFEST}" "")
+file(WRITE "C:/DVSArchitecture/test/trunk/Builds/${CMAKE_INSTALL_MANIFEST}" "")
 foreach(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  file(APPEND "C:/DVSArchitecture/CRC_Project/trunk/Builds/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  file(APPEND "C:/DVSArchitecture/test/trunk/Builds/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 endforeach()

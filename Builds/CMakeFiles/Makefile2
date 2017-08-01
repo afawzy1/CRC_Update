@@ -46,10 +46,10 @@ RM = "C:\Program Files (x86)\CMake\bin\cmake.exe" -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\DVSArchitecture\CRC_Project\trunk
+CMAKE_SOURCE_DIR = C:\DVSArchitecture\test\trunk
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\DVSArchitecture\CRC_Project\trunk\Builds
+CMAKE_BINARY_DIR = C:\DVSArchitecture\test\trunk\Builds
 
 #=============================================================================
 # Directory level rules for directory bin
@@ -74,7 +74,7 @@ bin/CMakeFiles/bin.dir/all: crc_lib/CMakeFiles/crc_lib.dir/all
 bin/CMakeFiles/bin.dir/all: SParser_lib/CMakeFiles/SParser_lib.dir/all
 	$(MAKE) -f bin\CMakeFiles\bin.dir\build.make bin/CMakeFiles/bin.dir/depend
 	$(MAKE) -f bin\CMakeFiles\bin.dir\build.make bin/CMakeFiles/bin.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report C:\DVSArchitecture\test\trunk\Builds\CMakeFiles  2
 	@echo Built target bin
 .PHONY : bin/CMakeFiles/bin.dir/all
 
@@ -84,9 +84,9 @@ all: bin/CMakeFiles/bin.dir/all
 
 # Build rule for subdir invocation for target.
 bin/CMakeFiles/bin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles 3
 	$(MAKE) -f CMakeFiles\Makefile2 bin/CMakeFiles/bin.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles 0
 .PHONY : bin/CMakeFiles/bin.dir/rule
 
 # Convenience name for target.
@@ -124,7 +124,7 @@ crc_lib/preinstall:
 crc_lib/CMakeFiles/crc_lib.dir/all:
 	$(MAKE) -f crc_lib\CMakeFiles\crc_lib.dir\build.make crc_lib/CMakeFiles/crc_lib.dir/depend
 	$(MAKE) -f crc_lib\CMakeFiles\crc_lib.dir\build.make crc_lib/CMakeFiles/crc_lib.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles  3
+	$(CMAKE_COMMAND) -E cmake_progress_report C:\DVSArchitecture\test\trunk\Builds\CMakeFiles  3
 	@echo Built target crc_lib
 .PHONY : crc_lib/CMakeFiles/crc_lib.dir/all
 
@@ -134,9 +134,9 @@ all: crc_lib/CMakeFiles/crc_lib.dir/all
 
 # Build rule for subdir invocation for target.
 crc_lib/CMakeFiles/crc_lib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles 1
 	$(MAKE) -f CMakeFiles\Makefile2 crc_lib/CMakeFiles/crc_lib.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles 0
 .PHONY : crc_lib/CMakeFiles/crc_lib.dir/rule
 
 # Convenience name for target.
@@ -189,7 +189,7 @@ SParser_lib/preinstall:
 SParser_lib/CMakeFiles/SParser_lib.dir/all:
 	$(MAKE) -f SParser_lib\CMakeFiles\SParser_lib.dir\build.make SParser_lib/CMakeFiles/SParser_lib.dir/depend
 	$(MAKE) -f SParser_lib\CMakeFiles\SParser_lib.dir\build.make SParser_lib/CMakeFiles/SParser_lib.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report C:\DVSArchitecture\test\trunk\Builds\CMakeFiles  1
 	@echo Built target SParser_lib
 .PHONY : SParser_lib/CMakeFiles/SParser_lib.dir/all
 
@@ -199,9 +199,9 @@ all: SParser_lib/CMakeFiles/SParser_lib.dir/all
 
 # Build rule for subdir invocation for target.
 SParser_lib/CMakeFiles/SParser_lib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles 1
 	$(MAKE) -f CMakeFiles\Makefile2 SParser_lib/CMakeFiles/SParser_lib.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\CRC_Project\trunk\Builds\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\DVSArchitecture\test\trunk\Builds\CMakeFiles 0
 .PHONY : SParser_lib/CMakeFiles/SParser_lib.dir/rule
 
 # Convenience name for target.

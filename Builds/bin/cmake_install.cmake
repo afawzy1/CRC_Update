@@ -1,4 +1,4 @@
-# Install script for directory: C:/DVSArchitecture/CRC_Project/trunk/bin
+# Install script for directory: C:/DVSArchitecture/test/trunk/bin
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
