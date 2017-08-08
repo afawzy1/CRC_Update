@@ -1,1 +1,0 @@
--I../../bin/bin -I../../bin/PUBLIC -I../../Std_lib/inc -I../../crc_lib/inc -I../../SParser_lib/inc 

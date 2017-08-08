@@ -208,14 +208,14 @@ std_RetVal SPR_RetrieveData(FILE *file, uint32 startAddress, uint32 endAddress, 
 {
 	std_RetVal retval = E_NOT_OK;
 	uint32 indx = MIN_UINT32;
-	if (buffer != NULL_PTR && file != NULL_PTR && startAddress <= endAddress)
+	if (__builtin_expect((buffer != NULL_PTR && file != NULL_PTR && startAddress <= endAddress),1U))
 	{
 		/*printf("start address = %X & end address = %X \n",startAddress, endAddress);*/
 		while((startAddress + indx) <= endAddress)
 		{
 			if(E_OK == spr_GetAddData(file, (startAddress + indx), (buffer+indx)))
 			{
-				if((startAddress + indx) == endAddress)
+				if(__builtin_expect(((startAddress + indx) == endAddress),0U))
 				{
 					retval = E_OK;
 					break;
@@ -361,7 +361,7 @@ static std_RetVal spr_GetAddData(FILE *file, uint32 saddress, uint8 *data)
 	uint32 raddress = MIN_UINT8;
 	uint8 stdata[CORE_DATA_LNTH];
 	uint8 dataoffset = MIN_UINT8;
-	if (firstCall == TRUE)
+	if (__builtin_expect((firstCall == TRUE),0U))
 	{
 		fgets(record, sizeof(record), file);
 		firstCall = FALSE;
@@ -371,7 +371,7 @@ static std_RetVal spr_GetAddData(FILE *file, uint32 saddress, uint8 *data)
 		/*do nothing*/
 	}
 
-	if (file != NULL_PTR && data != NULL_PTR)
+	if (__builtin_expect((file != NULL_PTR && data != NULL_PTR),1U))
 	{
 		do
 		{
@@ -379,13 +379,13 @@ static std_RetVal spr_GetAddData(FILE *file, uint32 saddress, uint8 *data)
 			raddress = spr_GetRecordAddress(record);
 			/*printf("Record = %s \n", record);
 			printf("data_length = %X,address = %X & saddress = %X\n ",rdatalength, raddress, saddress);*/
-			if (saddress >= raddress && saddress < (raddress +  rdatalength))
+			if (__builtin_expect((saddress >= raddress && saddress < (raddress +  rdatalength)),0U))
 			{
 				/*printf("CHECK POINT \n");*/
 				dataoffset = REC_ADD_OFFSET + (spr_MapAddLength(record[1])) + ((saddress - raddress)*2);
 				memcpy(stdata, (record + dataoffset), sizeof(stdata));
 				/*data[0] = strtoul(stdata, NULL, 16);*/
-				if(E_OK != hex2uint8(stdata, data))
+				if(__builtin_expect((E_OK != hex2uint8(stdata, data)),0U))
 				{
 					printf("General programming error CODE:04 \n");
 					exit(1);

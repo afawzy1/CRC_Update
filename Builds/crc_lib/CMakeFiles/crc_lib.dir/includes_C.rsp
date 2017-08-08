@@ -1,1 +1,0 @@
--I../../crc_lib/crc_lib -I../../crc_lib/PUBLIC -I../../SParser_lib/inc -I../../crc_lib/inc -I../../Std_lib/inc 

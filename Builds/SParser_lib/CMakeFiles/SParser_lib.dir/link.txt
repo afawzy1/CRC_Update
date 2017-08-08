@@ -1,2 +1,0 @@
-C:\minGW\bin\ar.exe cq libSParser_lib.a  CMakeFiles/SParser_lib.dir/src/SParser.c.obj
-C:\minGW\bin\ranlib.exe libSParser_lib.a

@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "CRC.h"
 
 
@@ -198,18 +199,14 @@ uint32 CRC_CalculateMemCRC32(FILE *file, blockboundies_Type *buffer, uint8 block
 		 Add2Stop = buffer[indx].endAdd;
 		 printf("**************START READING BLOCK %d************** \n", indx);
 		 if (
-				Add2Start < __CRC_START_ADDRESS
-				&&
-				Add2Stop >= __CRC_END_ADDRESS
+				 __builtin_expect((Add2Start < __CRC_START_ADDRESS && Add2Stop >= __CRC_END_ADDRESS),0U)
 			 )
 		 {
 			 printf("Not Implemented YET\n");
 			 exit(1);
 		 }
 		 else if (
-					Add2Start == __CRC_START_ADDRESS
-					&&
-					Add2Stop >= __CRC_END_ADDRESS
+				 __builtin_expect((Add2Start == __CRC_START_ADDRESS && Add2Stop >= __CRC_END_ADDRESS),1U)
 			     )
 		 {
 			 Add2Start = __CRC_END_ADDRESS + 1;
@@ -227,7 +224,7 @@ uint32 CRC_CalculateMemCRC32(FILE *file, blockboundies_Type *buffer, uint8 block
 			 firstCall = (Add2Start == buffer[MIN_UINT8].startAdd) ? TRUE : FALSE;
 			 CRC_accum = (firstCall == TRUE) ?  0xFFFFFFFF : CRC_accum;
 
-			 if (E_OK == SPR_RetrieveData(file, Add2Start, (Add2Start + blocksize - 1) , CRC_Buffer))
+			 if (__builtin_expect((E_OK == SPR_RetrieveData(file, Add2Start, (Add2Start + blocksize - 1) , CRC_Buffer)),1U))
 			 {
 				/*printf("CRC = %X\n", CRC_accum);*/
 				/*printf("data = 0x");

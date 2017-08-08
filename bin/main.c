@@ -12,6 +12,7 @@
 /* ========================== include files =========================== */
 /* ==================================================================== */
 #include <stdio.h>
+#include <stdlib.h>
 #include "Std_Types.h"
 #include "CRC.h"
 #include "SParser.h"
@@ -29,22 +30,21 @@ uint32 main(uint32 argc, uint8 *argv[])
 	uint32 temp_CRC = MIN_UINT32;
 	CRC_Init();
 	(void)SPR_GetBlocksBoundries(Ifile, &blockNumber, blocksboundries);
-	if (Ifile == NULL)
+	if (__builtin_expect((Ifile == NULL),0))
 	{
 	    printf("s19 file not found !\n");
 	    exit(1);
 	}
 	else
 	{
-		/*do nothing*/
+		CRC = CRC_CalculateMemCRC32(Ifile, blocksboundries, blockNumber);
+		printf("CRC = %X \n", CRC);
+		(void)spr_Write_uint32ToFile(Ifile, __CRC_START_ADDRESS, CRC);
+		printf("*************************************\n");
+		printf("******CRC UPDATED SUCCESSFULLY*******\n");
+		printf("*************************************\n");
+		fclose(Ifile);
 	}
-	CRC = CRC_CalculateMemCRC32(Ifile, blocksboundries, blockNumber);
-	printf("CRC = %X \n", CRC);
-	(void)spr_Write_uint32ToFile(Ifile, __CRC_START_ADDRESS, CRC);
-	printf("*************************************\n");
-	printf("******CRC UPDATED SUCCESSFULLY*******\n");
-	printf("*************************************\n");
-	fclose(Ifile);
 
     return 0;
 }

@@ -8,13 +8,13 @@ int main(int argc, char *argv[])
 	gtk_init(&argc, &argv);
 	    
 	gtkBuilder = gtk_builder_new();
-	if(!gtk_builder_add_from_file(gtkBuilder, "builder.ui", &error))
+	if(!gtk_builder_add_from_file(gtkBuilder, "gui_config.glade", &error))
 	{
 		g_warning( "%s", error->message );
         g_free( error );
         return( 1 );
 	}
-	window = GTK_WIDGET(gtk_builder_get_object(gtkBuilder, "CRC_Configuration"));
+	window = GTK_WIDGET(gtk_builder_get_object(gtkBuilder, "crc_main"));
 	
 	 /* Connect signals */
     gtk_builder_connect_signals( gtkBuilder, NULL );
