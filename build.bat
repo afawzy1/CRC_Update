@@ -12,15 +12,15 @@ call mingw32-make all -j4
 GOTO :Test_output
 
 :start_build
-IF EXIST .\Builds\bin\bin.exe (
-	del .\Builds\bin\bin.exe
+IF EXIST .\Builds\bin\crc_update.exe (
+	del .\Builds\bin\crc_update.exe
 	)
 cd Builds
 cmake .. -G "MinGW Makefiles"
 call mingw32-make all -j4
 
 :Test_output
-IF EXIST .\bin\bin.exe (
+IF EXIST .\bin\crc_update.exe (
 	echo ****************************
 	echo * Build Successfull *
 ) ELSE (

@@ -1,9 +1,9 @@
-project(bin)
+project(crc_update)
 
 set(SOURCES
     main.c
 )
-
+set(DirectoryName bin)
 # Create the executable
 add_executable(${PROJECT_NAME} ${SOURCES})
 
@@ -16,7 +16,7 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 # Include the inc directories from the sub projects
-include_directories( ${PROJECT_NAME}
+include_directories( ${DirectoryName}
     PUBLIC
 	${Std_lib_SOURCE_DIR}/inc
     ${crc_lib_SOURCE_DIR}/inc

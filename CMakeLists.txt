@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.0)
-cmake_policy(SET CMP0015 NEW)
-project(CRC_Check)
+
+project(crc_update)
 # Add sub directories
 add_subdirectory(bin)
 add_subdirectory(crc_lib)
